@@ -1,15 +1,16 @@
-import express from 'express';
-import cors from 'cors';
-import textRoutes from './routes/textRoutes';
+import express, { Application } from 'express';
+import cors from 'cors'; 
+import libraryRouter from './routes/libraryRouter';
 
-const app = express();
+const app: Application = express();
 const PORT = 3000;
 
+app.use(express.json()); 
 app.use(cors());
-app.use(express.json());
 
-app.use('/api', textRoutes);
+
+app.use(libraryRouter);
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando com sucesso na porta: ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

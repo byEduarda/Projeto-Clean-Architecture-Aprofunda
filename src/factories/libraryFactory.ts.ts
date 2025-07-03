@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Text } from '../models/Text';
+import { Text } from '../models/libraryModel';
 
 export function createText(data: Omit<Text, 'id' | 'createdAt'>): Text {
   return {
