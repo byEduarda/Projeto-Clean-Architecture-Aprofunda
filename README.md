@@ -22,3 +22,8 @@
 ## Objetivo da API
 
 API simples para gerenciar textos, demonstrando conceitos de Clean Architecture, uso de Express, UUID para IDs automáticos e CORS para permitir requisições de diferentes origens.
+
+
+
+
+M. Eduarda A
