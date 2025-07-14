@@ -67,11 +67,3 @@ Endpoints disponíveis
   "status": "disponível"
 }
 ```
-
-## Próximos passos
-
-- Aumentar a cobertura de testes para 100%.
-- Implementar mais testes unitários.
-- Adicionar validação de entrada para as rotas.
-- Implementar autenticação e autorização
-- Adicionar imagens dos testes com Delete e Patch
