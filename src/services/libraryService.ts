@@ -1,30 +1,43 @@
-import libraryFactory from "../factories/libraryFactory";
-import BookStorage from "../storage/libraryStorage"; //refatorar depois
+import { v4 as uuidv4 } from "uuid";
+import BookStorage, { Book } from "../storage/libraryStorage";
 
-interface BookData {
+interface CreateBookData {
   title: string;
   content: string;
   status: string;
   author: string;
 }
 
-// Define a estrutura de dados completa de um texto através de herança da interface TextData
-// e inclui os campos adicionais necessários para o armazenamento gerados automaticamente
-interface Book extends BookData {
-  id: string;
-  created_at: string;
+export function createBook(data: CreateBookData): Book {
+  const newBook: Book = {
+    id: uuidv4(),
+    created_at: new Date().toISOString(),
+    ...data,
+  };
+
+  BookStorage.add(newBook);
+  return newBook;
 }
 
-export default {
-  
-  createBook: ({ title, content, status, author }: BookData): Book => {
-    const newBook = libraryFactory.create({ title, content, status, author });
-    BookStorage.add(newBook);
-    return newBook;
-  },
- 
-  listBooks: (): Book[] => {
-    return BookStorage.getAll();
-  }
+export function listBooks(): Book[] {
+  return BookStorage.getAll();
+}
 
-};
+export function getBook(id: string): Book | undefined {
+  return BookStorage.getBookById(id);
+}
+
+export function deleteBook(id: string): boolean {
+  const index = BookStorage.books.findIndex(book => book.id === id);
+  if (index === -1) return false;
+
+  BookStorage.books.splice(index, 1);
+  return true;
+}
+export function updateBook(id: string, data: Partial<CreateBookData>): Book | undefined {
+  const book = BookStorage.getBookById(id);
+  if (!book) return undefined;
+
+  Object.assign(book, data);
+  return book;
+}

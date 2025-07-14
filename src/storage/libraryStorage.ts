@@ -7,10 +7,9 @@ export interface Book {
   created_at: string;
 }
 
-class BookStorage {
-  
+export class BookStorage {
   private static instance: BookStorage;
-  
+
   public books: Book[] = [];
 
   private constructor() {}
@@ -25,11 +24,20 @@ class BookStorage {
   public add(book: Book): void {
     this.books.push(book);
   }
-  
+
   public getAll(): Book[] {
     return this.books;
   }
 
+  public getBookById(id: string): Book | undefined {
+    return this.books.find((book) => book.id === id);
+  }
+
+  public deleteBook(id: string): Book[] {
+    this.books = this.books.filter((book) => book.id !== id);
+    return this.books;
+  }
 }
 
+// Exporta a instância como padrão
 export default BookStorage.getInstance();

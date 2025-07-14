@@ -8,9 +8,9 @@ const PORT = 3000;
 app.use(express.json()); 
 app.use(cors());
 
-
 app.use(libraryRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Não iniciar o server automaticamente aqui!
+// Apenas exportar o app
+
+export default app;

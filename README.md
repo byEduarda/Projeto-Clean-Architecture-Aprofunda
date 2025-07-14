@@ -1,29 +1,77 @@
-# Projeto2-Clean-Architecture-Aprofunda
+# Projeto de API com Clean Architecture usando TypeScript e Express
+
+Este projeto é uma API simples para gerenciamento de livros, construída seguindo os princípios da Clean Architecture. Utiliza TypeScript e Express para oferecer funcionalidades básicas como criação e listagem de livros.
+
 
 ## Tecnologias utilizadas
+
 - Node.js
-- Express
-- TypeScript
-- UUID
-- CORS
+- Express.js
+- Nodemon
+- Cors
+- Supertest
+- Jest
 
-## Como rodar o projeto
+## Como configurar
 
-1. Clone o repositório
-2. Rode `npm install`
-3. Rode `npm run dev`
-4. A API estará disponível em `http://localhost:3000`
+Clone este repositório:
 
-## Rotas disponíveis
+``git clone + endereço do repositório``
 
-- POST `/api/texts` → cria um texto (envie JSON com title, content, status, author)
-- GET `/api/texts` → lista todos os textos
+Entre na pasta do projeto:
 
-## Objetivo da API
+``cd nome-da-pasta``
 
-API simples para gerenciar textos, demonstrando conceitos de Clean Architecture, uso de Express, UUID para IDs automáticos e CORS para permitir requisições de diferentes origens.
+Instale as dependências:
 
+``npm install``
 
+Inicie o servidor:
 
+``npm run dev``
 
-M. Eduarda A
+Obs: É importante ter o Node.js e npm instalados em sua máquina. Além disso, recomenda-se instalar o TypeScript globalmente para facilitar o desenvolvimento:
+
+``npm install -g typescript``
+
+## Execução dos testes
+
+Para executar a suíte de testes:
+
+``npm run test``
+
+Para gerar um relatório detalhado de cobertura dos testes:
+
+``npm run test:coverage``
+
+## Rotas
+
+Endpoints disponíveis
+
+- **GET /**: Retorna uma mensagem de boas-vindas.
+- **GET /books**: Lista todos os livros cadastrados.
+- **POST /book**: Adiciona um novo livro.
+- **GET /book/:id**: Busca um livro específico pelo seu ID.
+- **PATCH /book/:id**: Atualiza os dados de um livro pelo ID.
+- **DELETE /book/:id**: Deleta um livro pelo ID.
+
+## Exemplo de uso
+
+## Para criar um livro, envie uma requisição POST para /book com o seguinte JSON no corpo da requisição:
+
+```json
+{
+  "title": "O Senhor dos Anéis",
+  "author": "J.R.R. Tolkien",
+  "content": "Uma história épica de fantasia.",
+  "status": "disponível"
+}
+```
+
+## Próximos passos
+
+- Aumentar a cobertura de testes para 100%.
+- Implementar mais testes unitários.
+- Adicionar validação de entrada para as rotas.
+- Implementar autenticação e autorização
+- Adicionar imagens dos testes com Delete e Patch

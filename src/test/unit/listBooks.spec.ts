@@ -1,4 +1,4 @@
-import libraryService from "../../services/libraryService";
+import * as libraryService from "../../services/libraryService";
 import BookStorage from "../../storage/libraryStorage";
 
 describe('GET libraryService', () => {
