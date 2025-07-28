@@ -6,4 +6,5 @@ app.use(express.json());
 
 connectToMongo(); 
 
+
 export default app;
