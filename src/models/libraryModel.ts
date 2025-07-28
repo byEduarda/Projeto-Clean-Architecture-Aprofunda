@@ -1,31 +1,21 @@
-export class Book {
-    id: string;
-    title: string;
-    content: string;
-    status: string;
-    author: string;
-    created_at: string;
+import mongoose, { Schema, Document } from 'mongoose';
 
-    constructor({
-        id,
-        title,
-        content,
-        status,
-        author,
-        created_at,
-    }: {
-        id: string;
-        title: string;
-        content: string;
-        status: string;
-        author: string;
-        created_at: string;
-    }) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.status = status;
-        this.author = author;
-        this.created_at = created_at;
-    }
+export interface IBook extends Document {
+  title: string;
+  content: string;
+  status: string;
+  author: string;
+  created_at: Date;
 }
+
+
+const BookSchema: Schema = new Schema({
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+  status: { type: String, required: true },
+  author: { type: String, required: true },
+  created_at: { type: Date, default: Date.now }
+});
+
+
+export const BookModel = mongoose.model<IBook>('Book', BookSchema);
