@@ -10,7 +10,5 @@ app.use(cors());
 
 app.use(libraryRouter);
 
-// Não iniciar o server automaticamente aqui!
-// Apenas exportar o app
 
 export default app;
