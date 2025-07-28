@@ -1,5 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
-import BookStorage, { Book } from "../storage/libraryStorage";
+import { BookModel, IBook } from "../models/libraryModel";
 
 interface CreateBookData {
   title: string;
@@ -8,36 +7,26 @@ interface CreateBookData {
   author: string;
 }
 
-export function createBook(data: CreateBookData): Book {
-  const newBook: Book = {
-    id: uuidv4(),
-    created_at: new Date().toISOString(),
-    ...data,
-  };
+export const libraryService = {
+  async createBook(data: CreateBookData): Promise<IBook> {
+    const book = await BookModel.create(data);
+    return book;
+  },
 
-  BookStorage.add(newBook);
-  return newBook;
-}
+  async listBooks(): Promise<IBook[]> {
+    return await BookModel.find();
+  },
 
-export function listBooks(): Book[] {
-  return BookStorage.getAll();
-}
+  async getBook(id: string): Promise<IBook | null> {
+    return await BookModel.findById(id);
+  },
 
-export function getBook(id: string): Book | undefined {
-  return BookStorage.getBookById(id);
-}
+  async deleteBook(id: string): Promise<boolean> {
+    const result = await BookModel.findByIdAndDelete(id);
+    return !!result;
+  },
 
-export function deleteBook(id: string): boolean {
-  const index = BookStorage.books.findIndex(book => book.id === id);
-  if (index === -1) return false;
-
-  BookStorage.books.splice(index, 1);
-  return true;
-}
-export function updateBook(id: string, data: Partial<CreateBookData>): Book | undefined {
-  const book = BookStorage.getBookById(id);
-  if (!book) return undefined;
-
-  Object.assign(book, data);
-  return book;
-}
+  async updateBook(id: string, data: Partial<CreateBookData>): Promise<IBook | null> {
+    return await BookModel.findByIdAndUpdate(id, data, { new: true });
+  }
+};
