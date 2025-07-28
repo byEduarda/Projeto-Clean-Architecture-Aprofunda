@@ -3,7 +3,7 @@ import app from '../../';
 
 describe('DELETE /book/:id', () => {
   it('deve retornar 200 quando remover um livro com sucesso', async () => {
-    // Cria um livro antes
+
     const createResponse = await request(app)
       .post('/book')
       .send({
@@ -15,7 +15,6 @@ describe('DELETE /book/:id', () => {
 
     const bookId = createResponse.body.id;
 
-    // Agora faz o DELETE
     const deleteResponse = await request(app).delete(`/book/${bookId}`);
 
     expect(deleteResponse.status).toBe(200);
