@@ -1,69 +1,143 @@
-# Projeto de API com Clean Architecture usando TypeScript e Express
+```markdown
+# 📚 API de Biblioteca com Clean Architecture, TypeScript e JWT
 
-Este projeto é uma API simples para gerenciamento de livros, construída seguindo os princípios da Clean Architecture. Utiliza TypeScript e Express para oferecer funcionalidades básicas como criação e listagem de livros.
+Este projeto é uma API simples para gerenciamento de livros, construída com os princípios da **Clean Architecture**. Utiliza autenticação com **JWT (JSON Web Token)** para proteger rotas sensíveis, como criação, edição e remoção de livros.
 
+---
 
-## Tecnologias utilizadas
+## 🚀 Tecnologias utilizadas
 
 - Node.js
 - Express.js
-- Nodemon
-- Cors
-- Supertest
-- Jest
+- TypeScript
+- MongoDB + Mongoose
+- JWT (jsonwebtoken)
+- Bcrypt
+- Dotenv
+- Jest + Supertest
+- ts-node-dev
 
-## Como configurar
+---
 
-Clone este repositório:
+## ⚙️ Como configurar o projeto
 
-``git clone + endereço do repositório``
+### 1. Clone o repositório:
 
-Entre na pasta do projeto:
+```bash
+git clone https://github.com/byEduarda/Projeto-Clean-Architecture-Aprofunda.git
+cd Projeto-Clean-Architecture-Aprofunda
+```
 
-``cd nome-da-pasta``
+### 2. Instale as dependências:
 
-Instale as dependências:
+```bash
+npm install
+```
 
-``npm install``
+### 3. Configure as variáveis de ambiente:
 
-Inicie o servidor:
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
 
-``npm run dev``
+```env
+MONGO_URI=SuaStringDeConexaoMongoDB
+JWT_SECRET=SuaChaveSecretaSegura
+```
 
-Obs: É importante ter o Node.js e npm instalados em sua máquina. Além disso, recomenda-se instalar o TypeScript globalmente para facilitar o desenvolvimento:
+### 4. Inicie o servidor:
 
-``npm install -g typescript``
+```bash
+npm run dev
+```
 
-## Execução dos testes
+> O servidor rodará por padrão em `http://localhost:3000`
 
-Para executar a suíte de testes:
+---
 
-``npm run test``
+## ✅ Testes
 
-Para gerar um relatório detalhado de cobertura dos testes:
+Para rodar os testes automatizados:
 
-``npm run test:coverage``
+```bash
+npm run test
+```
 
-## Rotas
+Para gerar o relatório de cobertura:
 
-Endpoints disponíveis
+```bash
+npm run test:coverage
+```
 
-- **GET /**: Retorna uma mensagem de boas-vindas.
-- **GET /books**: Lista todos os livros cadastrados.
-- **POST /book**: Adiciona um novo livro.
-- **GET /book/:id**: Busca um livro específico pelo seu ID.
-- **PATCH /book/:id**: Atualiza os dados de um livro pelo ID.
-- **DELETE /book/:id**: Deleta um livro pelo ID.
+---
 
-## Exemplo de uso
+## 🔐 Autenticação JWT
 
-## Para criar um livro, envie uma requisição POST para /book com o seguinte JSON no corpo da requisição:
+A API implementa autenticação com JSON Web Token.
 
+### Fluxo:
+
+1. Registre um usuário com `POST /auth/register`
+2. Faça login com `POST /auth/login`
+3. Use o token JWT retornado para acessar rotas protegidas
+
+Exemplo de header necessário para acesso autenticado:
+
+```
+Authorization: Bearer SEU_TOKEN_JWT
+```
+
+---
+
+## 📌 Rotas da API
+
+### Públicas
+
+| Método | Rota            | Descrição                    |
+|--------|-----------------|------------------------------|
+| GET    | `/`             | Boas-vindas                  |
+| GET    | `/books`        | Lista todos os livros        |
+| GET    | `/books/:id`    | Busca um livro pelo ID       |
+| POST   | `/auth/register`| Registra um novo usuário     |
+| POST   | `/auth/login`   | Realiza login e retorna token|
+
+### Protegidas (JWT obrigatório)
+
+| Método | Rota             | Descrição                   |
+|--------|------------------|-----------------------------|
+| POST   | `/books`         | Cria um novo livro          |
+| PATCH  | `/books/:id`     | Atualiza um livro pelo ID   |
+| DELETE | `/books/:id`     | Remove um livro pelo ID     |
+
+---
+
+## 📦 Exemplo de uso
+
+### Criar livro (protegido)
+
+**POST `/books`**
+
+**Header:**
+```
+Authorization: Bearer SEU_TOKEN_JWT
+```
+
+**Body:**
 ```json
 {
-  "title": "O Senhor dos Anéis",
-  "author": "J.R.R. Tolkien",
-  "content": "Uma história épica de fantasia.",
+  "title": "Dom Casmurro",
+  "author": "Machado de Assis",
+  "content": "Um romance psicológico brasileiro.",
   "status": "disponível"
 }
+```
+
+
+---
+
+## 💬 Sobre o projeto
+
+Este projeto foi desenvolvido com fins educacionais, para praticar backend seguro, organizado e escalável com TypeScript, Express, MongoDB e JWT.
+
+---
+
+📢 **Sinta-se à vontade para clonar, estudar ou contribuir!**
 ```
