@@ -1,4 +1,4 @@
-```markdown
+
 # 📚 API de Biblioteca com Clean Architecture, TypeScript e JWT
 
 Este projeto é uma API simples para gerenciamento de livros, construída com os princípios da **Clean Architecture**. Utiliza autenticação com **JWT (JSON Web Token)** para proteger rotas sensíveis, como criação, edição e remoção de livros.
@@ -140,4 +140,4 @@ Este projeto foi desenvolvido com fins educacionais, para praticar backend segur
 ---
 
 📢 **Sinta-se à vontade para clonar, estudar ou contribuir!**
-```
+
