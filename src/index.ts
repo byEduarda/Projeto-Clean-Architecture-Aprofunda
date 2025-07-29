@@ -5,9 +5,11 @@ import dotenv from 'dotenv';
 import { authMiddleware } from './shared/middlewares/authMiddleware';
 import authRoutes from './routes/authRoutes';
 import libraryRoutes from './routes/libraryRoutes';
+import { config } from './config/environment';
 
 dotenv.config();
 
+const URL = config.mongo_url;
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;

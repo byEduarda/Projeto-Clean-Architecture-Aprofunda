@@ -31,7 +31,7 @@ jobs:
     - name: Run tests
       run: npm test
       env:
-        MONGO_URL: 'mongodb://localhost:27017/biblioteca_test'
+        MONGO_URI: 'mongodb://localhost:27017/biblioteca_test'
         JWT_SECRET: jwt-secret-test
         NODE_ENV: test
 
