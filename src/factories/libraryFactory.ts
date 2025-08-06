@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Book } from '../models/libraryModel';
+import { BookModel, IBook } from '../models/libraryModel';
 
 interface BookData {
   title: string;
@@ -9,8 +9,8 @@ interface BookData {
 }
 
 export default {
-  create: ({ title, content, status, author }: BookData): Book => {
-    return new Book({
+  create: ({ title, content, status, author }: BookData): IBook => {
+    const book = new BookModel({
       id: uuidv4(),
       title,
       content,
@@ -18,5 +18,7 @@ export default {
       author,
       created_at: new Date().toLocaleDateString("pt-BR"),
     });
+
+    return book;
   },
 };

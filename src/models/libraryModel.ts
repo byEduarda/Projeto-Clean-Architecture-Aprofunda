@@ -9,7 +9,7 @@ export interface IBook extends Document {
 }
 
 
-const BookSchema: Schema = new Schema({
+const BookSchema = new Schema<IBook>({
   title: { type: String, required: true },
   content: { type: String, required: true },
   status: { type: String, required: true },
