@@ -22,7 +22,7 @@ jobs:
       - name: Run tests
         run: echo "Sem testes ainda"
 
-      - name: Build project
+      - name: Build project 
         run: npm run build
 
   deploy:
